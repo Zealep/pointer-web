@@ -9,7 +9,7 @@ import java.security.Principal;
 @RestController
 public class MainController {
 
-	ModelAndView mavIndex = new ModelAndView("index"); // Goruntulenecek sayfanin adi (view page name)
+	ModelAndView mavIndex = new ModelAndView("index"); 
 
 	@RequestMapping(value = "/")
 	public ModelAndView index(Principal principal) {

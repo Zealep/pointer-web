@@ -23,7 +23,7 @@ label {
 
 input:focus {
 	outline: 0;
-	box-shadow: 0 0 3pt 1pt green;
+	box-shadow: 0 0 3pt 1pt red;
 }
 
 button:focus {
@@ -31,15 +31,18 @@ button:focus {
 }
 
 button {
-	background-color: #4CAF50;
+	background-color: rgb(255, 0, 0);
 	color: white;
-	border-radius: 50px;
+	border-radius: 25px;
 	font-weight: bold;
 	padding: 14px 20px;
 	margin: 20px 0;
 	border: none;
-	cursor: pointer;
 	width: 100%;
+	cursor: pointer;
+}
+.alta-user{
+	text-align: center;
 }
 
 button:hover {
