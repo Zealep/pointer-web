@@ -41,8 +41,9 @@ button {
 	width: 100%;
 	cursor: pointer;
 }
-.alta-user{
+.recuperar{
 	text-align: center;
+	font-size: small;
 }
 
 button:hover {
@@ -52,6 +53,9 @@ button:hover {
 .imgcontainer {
 	text-align: center;
 	margin: 24px 0 0 0;
+}
+#registrar{
+	width: 100%;
 }
 
 img.avatar {

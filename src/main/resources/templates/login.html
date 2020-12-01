@@ -25,9 +25,10 @@
 					<label for="password"><b>Clave</b></label>
 						<input type="password" placeholder="Ingrese su clave" name="password" id="password"></input>
 					<button class="button" type="submit">Entrar</button>
-					<div class="alta-user">
-						<a th:href="@{/alta-usuario}">Registrar nuevo usuario</a>
+					<div class="recuperar">
+						<a th:href="@{/usuario/recuperar}">¿Olvidaste tu constraseña?</a>
 					</div>
+					<a id="registrar" th:href="@{/usuario/alta}" class="btn btn-secondary" role="button">Registrarme</a>
 				</div>
 			</form>
 		</div>
