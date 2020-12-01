@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sercan Dorman Spring Work</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/getrequest.js"></script>
+<script src="/postrequest.js"></script>
+<script src="/accordion.js"></script>
+</head>
+<body>
+<div class="container">
+
+	<div class="row">
+		<blockquote>
+			<h3 class="title">POINTER-WEB</h3>
+		</blockquote>
+	</div>
+
+	<div class="row">
+		<div class="logout" onMouseOver="this.style.backgroundColor='#ddd'" onMouseOut="this.style.backgroundColor='#f1f1f1'">
+			Welcome <span th:text="${principal}" style="font-weight: bold"></span>
+			<button style="float: right" type="button" class="btn btn-danger btn-xs"
+					onclick="window.location.href='./logout'">Logout</button>
+		</div>
+	</div>
+
+
+</div>
+</body>
+</html>
