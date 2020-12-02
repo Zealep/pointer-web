@@ -11,7 +11,7 @@ public class MainController {
 
 	ModelAndView mavIndex = new ModelAndView("index"); 
 
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/index")
 	public ModelAndView index(Principal principal) {
 		String user = principal.getName();
 		mavIndex.addObject("principal", user);

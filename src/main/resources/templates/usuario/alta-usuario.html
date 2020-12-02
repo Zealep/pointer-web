@@ -38,10 +38,10 @@ $(document).ready(function() {
 			data : JSON.stringify(formData),
 			success : function() {
 				$("#postResultDiv").hide().html("<div class='alert alert-success'>" +
-						"<strong>Registro correcto !</strong></div>").slideDown("slow");
+						"<strong>Registro el usuario correctamente</strong></div>").slideDown("slow");
 			},
 			error : function(e) {
-				$("#postResultDiv").html("<div class='alert alert-danger'><strong>Error.</strong></div>");
+				$("#postResultDiv").html("<div class='alert alert-danger'><strong>Ocurrio un error</strong></div>");
 				console.log("ERROR: ", e);
 			}
 		});
