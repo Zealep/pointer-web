@@ -17,14 +17,51 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
+<script>
+$(document).ready(function() {
+    $("#altaUserForm").submit(function(event) {
+		event.preventDefault();
+		registrarUsuario();
+	});
+    function registrarUsuario(){
+    	var formData = {
+    			correo: $("#email").val(),
+        		usuario : $("#usuario").val(),
+        		clave : $("#password").val()
+        	}
+    	$.ajax({
+    		type : "POST",
+			contentType : "application/json",
+			url : "add",
+			data : JSON.stringify(formData),
+			success : function() {
+				$("#postResultDiv").hide().html("<div class='alert alert-success'>" +
+						"<strong>Registro correcto !</strong></div>").slideDown("slow");
+			},
+			error : function(e) {
+				$("#postResultDiv").html("<div class='alert alert-danger'><strong>Error.</strong></div>");
+				console.log("ERROR: ", e);
+			}
+		});
+    	resetData();
+    }
+    function resetData(){
+    	$("#email").val("");
+    	$("#usuario").val("");
+    	$("#password").val("");
+    }
+});
+
+</script>
 
 <body>
 	<div class="container">
 		<div class="card">
 			<div class="card-header">Registro de usuario</div>
 			<div class="card-body">
-				<form>
+				<form id="altaUserForm">
 					<div class="form-group">
 						<label for="email">Correo electronico</label> <input
 							type="email" class="form-control" id="email"
@@ -41,9 +78,12 @@
 					</div>
 
 					<button type="submit" class="btn btn-primary">Registrar</button>
-					<a th:href="@{/login}" class="btn btn-danger" role="button">Cancelar</a>
+					<a th:href="@{/login}" class="btn btn-secondary" role="button">Cancelar</a>
+					
 					
 				</form>
+				
+				<div id="postResultDiv" style="width:200px; margin-top:10px"></div>
 
 			</div>
 		</div>

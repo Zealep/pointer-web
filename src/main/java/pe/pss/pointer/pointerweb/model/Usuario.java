@@ -10,45 +10,66 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name="usuarios")
+@Table(name="postulante")
 public class Usuario implements UserDetails{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	/*
 	@EmbeddedId
 	private CompositePKUsuario id;
+	*/
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="idPostulante")
+	private String idPostulante;
 
-	@Column(name="varUsuario")
-	private String varUsuario;
+	@Column(name="correo")
+	private String correo;
+	
+	@Column(name="usuario")
+	private String usuario;
+	
+	@Column(name="clave")
+	private String clave;
+	
+	
+	
 
-	@Column(name="varPass")
-	private String varPass;
-
-	public CompositePKUsuario getId() {
-		return id;
+	public String getIdPostulante() {
+		return idPostulante;
 	}
 
-	public void setId(CompositePKUsuario id) {
-		this.id = id;
+	public void setIdPostulante(String idPostulante) {
+		this.idPostulante = idPostulante;
 	}
 
-	public String getVarUsuario() {
-		return varUsuario;
+	public String getCorreo() {
+		return correo;
 	}
 
-	public void setVarUsuario(String varUsuario) {
-		this.varUsuario = varUsuario;
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
-	public String getVarPass() {
-		return varPass;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setVarPass(String varPass) {
-		this.varPass = varPass;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getClave() {
+		return clave;
+	}
+
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 
 	@Override

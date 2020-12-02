@@ -23,7 +23,7 @@ label {
 
 input:focus {
 	outline: 0;
-	box-shadow: 0 0 3pt 1pt red;
+	box-shadow: 0 0 3pt 1pt blue;
 }
 
 button:focus {
@@ -31,7 +31,7 @@ button:focus {
 }
 
 button {
-	background-color: rgb(255, 0, 0);
+	background-color: rgb(29, 105, 152);
 	color: white;
 	border-radius: 25px;
 	font-weight: bold;
@@ -55,6 +55,7 @@ button:hover {
 	margin: 24px 0 0 0;
 }
 #registrar{
+	margin-top: 0.5rem;
 	width: 100%;
 }
 

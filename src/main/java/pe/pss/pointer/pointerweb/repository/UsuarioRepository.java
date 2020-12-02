@@ -10,6 +10,9 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
 
-    @Query("select u from Usuario u where u.varUsuario=?1")
+    @Query("select u from Usuario u where u.usuario=?1")
     Optional<Usuario> findByUsername(String username);
+    
+    @Query("select u.clave from Usuario u where u.correo=?1")
+    String findPassByEmail(String email);
 }
