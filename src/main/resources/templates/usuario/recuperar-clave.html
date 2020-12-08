@@ -33,12 +33,24 @@ $(document).ready(function() {
 			url : "send?"+
 					"email="+correo
 			,
-			success : function() {
-				$("#postResultDiv").hide().html("<div class='alert alert-success'>" +
-						"<strong>Se envió la clave al correo indicado</strong></div>").slideDown("slow");
+			beforeSend: function() {
+		        $("#loading").show();
+		    },
+			success : function(data) {
+				 $("#loading").hide();
+				 var alerta = "";
+					if(data.codigo == 200){
+						alerta = "alert alert-success"
+						resetData();
+					}else{
+						alerta = "alert alert-danger"
+					}
+				$("#postResultDiv").hide().html("<div class='"+alerta+"'>" +
+						"<strong>"+data.mensaje+"</strong></div>").slideDown("slow");
 			},
 			error : function(e) {
-				$("#postResultDiv").html("<div class='alert alert-danger'><strong>Error.</strong></div>");
+				 $("#loading").hide();
+				$("#postResultDiv").html("<div class='alert alert-danger'><strong>Ocurrio un error al enviar el correo</strong></div>");
 				console.log("ERROR: ", e);
 			}
 		});
@@ -66,7 +78,10 @@ $(document).ready(function() {
 					<a th:href="@{/login}" class="btn btn-secondary" role="button">Cancelar</a>
 					
 				</form>
-				<div id="postResultDiv" style="width:200px; margin-top:10px"></div>
+				<div id="loading" class="spinner-border text-primary" role="status" style="display: none;margin-top: 10px">
+  				<span class="sr-only">Cargando..</span>
+  				</div>
+				<div id="postResultDiv" style="width:100%; margin-top:10px"></div>
 
 			</div>
 		</div>

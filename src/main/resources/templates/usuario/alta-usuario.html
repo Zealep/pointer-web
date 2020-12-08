@@ -17,73 +17,133 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <script>
-$(document).ready(function() {
-    $("#altaUserForm").submit(function(event) {
-		event.preventDefault();
-		registrarUsuario();
-	});
-    function registrarUsuario(){
-    	var formData = {
-    			correo: $("#email").val(),
-        		usuario : $("#usuario").val(),
-        		clave : $("#password").val()
-        	}
-    	$.ajax({
-    		type : "POST",
-			contentType : "application/json",
-			url : "add",
-			data : JSON.stringify(formData),
-			success : function() {
-				$("#postResultDiv").hide().html("<div class='alert alert-success'>" +
-						"<strong>Registro el usuario correctamente</strong></div>").slideDown("slow");
-			},
-			error : function(e) {
-				$("#postResultDiv").html("<div class='alert alert-danger'><strong>Ocurrio un error</strong></div>");
-				console.log("ERROR: ", e);
-			}
-		});
-    	resetData();
-    }
-    function resetData(){
-    	$("#email").val("");
-    	$("#usuario").val("");
-    	$("#password").val("");
-    }
-});
-
+	$(document)
+			.ready(
+					function() {
+						$("#altaUserForm").submit(function(event) {
+							event.preventDefault();
+							registrarUsuario();
+						});
+						function registrarUsuario() {
+							var formData = {
+								apellidoPaterno : $("#apellidoPaterno").val(),
+								apellidoMaterno : $("#apellidoMaterno").val(),
+								nombres : $("#nombres").val(),
+								idTipoDocumentoIdentidad : $("#tipoDocumento option:selected").val(),
+								numeroDocumento : $("#numeroDocumento").val(),
+								correo : $("#correo").val(),
+								contraseña : $("#contraseña").val()
+							}
+							$
+									.ajax({
+										type : "POST",
+										contentType : "application/json",
+										url : "add",
+										data : JSON.stringify(formData),
+										beforeSend: function() {
+									        $("#loading").show();
+									    },
+										success : function(data) {
+											$("#loading").hide();
+											var message = data.mensaje;
+											var alerta = "";
+											if(data.codigo == 200){
+												alerta = "alert alert-success"
+												resetData();
+											}else{
+												alerta = "alert alert-danger"
+											}
+											
+											$("#postResultDiv")
+													.hide()
+													.html(
+															"<div class='"+alerta+"'>"
+																	+ "<strong>"+message+"</strong></div>")
+													.slideDown("slow");
+										},
+										error : function(jqXHR, textStatus, errorThrown) {
+											$("#loading").hide();
+											$("#postResultDiv")
+													.html(
+															"<div class='alert alert-danger'><strong>Ocurrio un error al registrar el postulante</strong></div>");
+											console.log(jqXHR.status + ' ' + jqXHR.responseText);
+										}
+									});
+							
+						}
+						function resetData() {
+							$("#apellidoPaterno").val("");
+							$("#apellidoMaterno").val("");
+							$("#nombres").val("");
+							$("#correo").val("");
+							$("#contraseña").val("");
+							$("#numeroDocumento").val("");
+						}
+					});
 </script>
 
 <body>
 	<div class="container">
-		<div class="card">
-			<div class="card-header">Registro de usuario</div>
+		<div class="card" style="margin-top: 2rem;">
+			<div class="card-header">Registro de datos del postulante</div>
 			<div class="card-body">
 				<form id="altaUserForm">
+
 					<div class="form-group">
-						<label for="email">Correo electronico</label> <input
-							type="email" class="form-control" id="email"
-							aria-describedby="emailHelp">
+						<label for="apellidoPaterno">Apellido Paterno</label> <input
+							type="text" class="form-control" id="apellidoPaterno">
 					</div>
 					<div class="form-group">
-						<label for="usuario">Usuario</label> <input
-							type="text" class="form-control" id="usuario"
-							aria-describedby="emailHelp">
+						<label for="apellidoMaterno">Apellido Materno</label> <input
+							type="text" class="form-control" id="apellidoMaterno">
+					</div>
+
+					<div class="form-group">
+						<label for="nombres">Nombres</label> <input type="text"
+							class="form-control" id="nombres">
+					</div>
+
+					<div class="form-group">
+						<label for="idTipoDocumentoIdentidad">Tipo de documento</label> <select class="form-control"
+							name="tipoDocumento" id="tipoDocumento">
+							<option value=" ">Seleccionar</option>
+							<option th:each="t : ${tipoDocumentos}"
+								th:value="${t.idTipoDocumentoIdentidad}" 
+								th:text="${t.glsTipoDocumentoIdentidad}"
+								/>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="numeroDocumento">Numero Documento</label> <input
+							type="text" class="form-control" id="numeroDocumento">
+					</div>
+
+
+					<div class="form-group">
+						<label for="correo">Correo electronico</label> <input type="email"
+							class="form-control" id="correo" aria-describedby="emailHelp">
 					</div>
 					<div class="form-group">
-						<label for="password">Contraseña</label> <input
-							type="password" class="form-control" id="password">
+						<label for="password">Contraseña</label> <input type="password"
+							class="form-control" id="contraseña">
 					</div>
 
 					<button type="submit" class="btn btn-primary">Registrar</button>
 					<a th:href="@{/login}" class="btn btn-secondary" role="button">Cancelar</a>
-					
-					
+
+
 				</form>
-				
-				<div id="postResultDiv" style="width:200px; margin-top:10px"></div>
+			
+				<div id="loading" class="spinner-border text-primary" role="status" style="display: none;margin-top: 10px'">
+  				<span class="sr-only">Cargando..</span>
+
+				</div>
+				<div id="postResultDiv" style="width: 100%; margin-top: 10px"></div>
 
 			</div>
 		</div>

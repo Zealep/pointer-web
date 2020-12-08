@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/personales")
-public class DatosPersonales {
+public class DatosPersonalesController {
 	
 	
 	@RequestMapping(value = "/datos")

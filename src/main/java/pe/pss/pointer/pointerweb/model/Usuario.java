@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name="postulante")
+@Table(name="rh_rl_tz_usuario_web")
 public class Usuario implements UserDetails{
 
 	/**
@@ -18,34 +18,93 @@ public class Usuario implements UserDetails{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	/*
-	@EmbeddedId
-	private CompositePKUsuario id;
-	*/
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idPostulante")
-	private String idPostulante;
+	@Column(name="idUsuarioWeb")
+	private String idUsuarioWeb;
 
+	@Column(name="idEmpresa")
+	private String idEmpresa;
+	
+	@Column(name="idTipoDocumentoIdentidad")
+	private String idTipoDocumentoIdentidad;
+	
+	@Column(name="numeroDocumento")
+	private String numeroDocumento;
+	
+	@Column(name="apellidoPaterno")
+	private String apellidoPaterno;
+	
+	@Column(name="apellidoMaterno")
+	private String apellidoMaterno;
+	
+	@Column(name="nombres")
+	private String nombres;
+	
+	@Column(name="estado")
+	private String estado;
+	
 	@Column(name="correo")
 	private String correo;
 	
-	@Column(name="usuario")
-	private String usuario;
-	
-	@Column(name="clave")
-	private String clave;
-	
-	
+	@Column(name="contraseña")
+	private String contraseña;
 	
 
-	public String getIdPostulante() {
-		return idPostulante;
+	public String getIdUsuarioWeb() {
+		return idUsuarioWeb;
 	}
 
-	public void setIdPostulante(String idPostulante) {
-		this.idPostulante = idPostulante;
+	public void setIdUsuarioWeb(String idUsuarioWeb) {
+		this.idUsuarioWeb = idUsuarioWeb;
+	}
+
+	public String getIdEmpresa() {
+		return idEmpresa;
+	}
+
+	public void setIdEmpresa(String idEmpresa) {
+		this.idEmpresa = idEmpresa;
+	}
+
+	public String getIdTipoDocumentoIdentidad() {
+		return idTipoDocumentoIdentidad;
+	}
+
+	public void setIdTipoDocumentoIdentidad(String idTipoDocumentoIdentidad) {
+		this.idTipoDocumentoIdentidad = idTipoDocumentoIdentidad;
+	}
+
+	public String getNumeroDocumento() {
+		return numeroDocumento;
+	}
+
+	public void setNumeroDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
+	}
+
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
+	}
+
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
+	}
+
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
+	}
+
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public String getCorreo() {
@@ -56,20 +115,22 @@ public class Usuario implements UserDetails{
 		this.correo = correo;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getContraseña() {
+		return contraseña;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+	
+	
+
+	public String getNombres() {
+		return nombres;
 	}
 
-	public String getClave() {
-		return clave;
-	}
-
-	public void setClave(String clave) {
-		this.clave = clave;
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
 	}
 
 	@Override

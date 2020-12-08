@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URL;
 import java.security.Principal;
+import java.util.List;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -15,12 +16,17 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import pe.pss.pointer.pointerweb.model.Menu;
+import pe.pss.pointer.pointerweb.repository.MenuRepository;
+import pe.pss.pointer.pointerweb.util.Constantes;
 
 @RestController
 public class MainController {
@@ -33,6 +39,9 @@ public class MainController {
     
     @Value("${recaptcha.key.secret}")
     private String secreto;
+    
+    @Autowired
+    private MenuRepository menuRepository;
 	
     ModelAndView mavIndex = new ModelAndView("index");
 
@@ -61,6 +70,13 @@ public class MainController {
 	result = new StringBuilder(publica);
 	return result;
 	}
+	
+	@RequestMapping(value = "/getmenus",method = RequestMethod.GET)
+	@ResponseBody
+	public List<Menu> obtenerMenus(){
+		return menuRepository.findAll();
+	}
+	
 		 
 	private boolean verificar(String gRecaptchaResponse) throws IOException {
 		    
