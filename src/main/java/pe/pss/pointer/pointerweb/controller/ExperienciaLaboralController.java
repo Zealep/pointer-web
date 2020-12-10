@@ -14,4 +14,9 @@ public class ExperienciaLaboralController {
 		ModelAndView mav = new ModelAndView("reclutamiento/experiencia-laboral/listExperienciaLab");
 		return mav;
 	}
+	@RequestMapping(value = "/form")
+	public ModelAndView verFormulario() {
+		ModelAndView mav = new ModelAndView("reclutamiento/experiencia-laboral/formExperienciaLab");
+		return mav;
+	}
 }

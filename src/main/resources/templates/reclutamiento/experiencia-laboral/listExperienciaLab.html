@@ -18,16 +18,92 @@
 	crossorigin="anonymous">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<script th:include="fragments/header :: menus">
+</script>
 </head>
+
 <body>
 
 	<div class="container">
 		<div th:replace="fragments/header :: header"></div>
-	
+
 		<div class="card card-principal">
 			<div class="card-header">Informacion de Experiencia Laboral</div>
 			<div class="card-body">
+				
+				<div style="margin-bottom: 1rem">
+					<a class="btn btn-primary" th:href="@{/laboral/form}">
+										<i class="far fa-plus"></i>Agregar
+					</a>
+				</div>
+
+				<div class="table-responsive">
+
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Empresa</th>
+								<th scope="col">Fecha de Ingreso</th>
+								<th scope="col">Fecha de Retiro</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>Otto</td>
+								<td>@mdo</td>
+								<td>
+									<button type="button" class="btn btn-primary">
+										<i class="far fa-eye"></i>
+									</button>
+									<button type="button" class="btn btn-success">
+										<i class="fas fa-edit"></i>
+									</button>
+									<button type="button" class="btn btn-danger">
+										<i class="far fa-trash-alt"></i>
+									</button>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">2</th>
+								<td>Thornton</td>
+								<td>@fat</td>
+								<td>
+									<button type="button" class="btn btn-primary">
+										<i class="far fa-eye"></i>
+									</button>
+									<button type="button" class="btn btn-success">
+										<i class="fas fa-edit"></i>
+									</button>
+									<button type="button" class="btn btn-danger">
+										<i class="far fa-trash-alt"></i>
+									</button>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">3</th>
+								<td>the Bird</td>
+								<td>@twitter</td>
+								<td>
+									<button type="button" class="btn btn-primary">
+										<i class="far fa-eye"></i>
+									</button>
+									<button type="button" class="btn btn-success">
+										<i class="fas fa-edit"></i>
+									</button>
+									<button type="button" class="btn btn-danger">
+										<i class="far fa-trash-alt"></i>
+									</button>
+								</td>
+							</tr>
+
+			
+						</tbody>
+					</table>
+				</div>
+
 			</div>
 		</div>
 	</div>

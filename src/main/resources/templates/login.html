@@ -22,6 +22,13 @@
 </head>
 <script>
 $(document).ready(function() {
+	
+	  // cuando pierde el foco, este valida si lo que esta en el campo de texto si es un correo o no y muestra una respuesta
+	  $('form').find('input[type=email]').blur(function(){
+	    caracteresCorreoValido($(this).val(), '#xmail')
+	  });
+	
+	
 	function cargarRcaptchaClavePublica () {
 		$.ajax({
 		url: "/obterner-rcaptcha-clave-publica",
@@ -37,8 +44,22 @@ $(document).ready(function() {
 
 		}
 		});
-		}	
-}
+		}
+	
+	function caracteresCorreoValido(email, div){
+	    console.log(email);
+	    var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+	    if (caract.test(email) == false){
+	        $('#xmail').css('display','block');
+	        return false;
+	    }else{
+	    	$('#xmail').hide();
+	        return true;
+	    }
+	}
+});
+
 </script>
 
 <body>
@@ -51,11 +72,16 @@ $(document).ready(function() {
 						<img th:src="@{/image/logo.png}" alt="Avatar" class="avatar"></img>
 					</div>
 					<div class="col-md-12">
-						<label for="username"><b>Usuario</b></label> <input type="text"
-							placeholder="Ingrese su usuario" name="username" id="username"></input>
+						<label for="username"><b>Usuario</b></label> <input type="email"
+							placeholder="Ingrese su usuario" name="username" id="username" maxlength="100"></input>
+							
+						<div id="xmail" class="alert alert-danger" style="display:none;width: 100%; margin-top: 10px"><strong>Ingresa un correo valido</strong>
+						
+						</div>
+						
 						<label for="password"><b>Clave</b></label> <input type="password"
 							placeholder="Ingrese su clave" name="password" id="password"></input>
-
+							
 							<div th:if="${param.error}" class="alert alert-danger" style="width: 100%; margin-top: 10px">
 									<strong>Usuario o contraseña incorrectos</strong>
 							</div>

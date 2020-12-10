@@ -14,4 +14,9 @@ public class NoFormalesController {
 		ModelAndView mav = new ModelAndView("reclutamiento/educacion-noformal/listEduNoFormal");
 		return mav;
 	}
+	@RequestMapping(value = "/form")
+	public ModelAndView verFormulario() {
+		ModelAndView mav = new ModelAndView("reclutamiento/educacion-noformal/formEduNoFormal");
+		return mav;
+	}
 }
