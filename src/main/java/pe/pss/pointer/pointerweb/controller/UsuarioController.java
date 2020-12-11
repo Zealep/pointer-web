@@ -66,7 +66,7 @@ public class UsuarioController {
 	
 	@RequestMapping(value = "/send")
 	@ResponseBody
-	public ResponseApi sendEmail(@RequestParam(value = "email")String correo) {
+	public ResponseApi sendEmail(@RequestParam(value = "correo")String correo) {
 		if(!usuarioService.existUser(correo)) {
 			return new ResponseApi(Constantes.RESPONSE_VALIDATION_ERROR, "El correo no se encuentra registrado");
 		}
